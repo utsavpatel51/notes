@@ -3,16 +3,16 @@ import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import Item from '@/app/(main)/_components/item';
+import DocumentItem from '@/app/(main)/_components/sidebar/document-item';
 import { FileIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Skeleton } from '@/components/ui/skeleton';
 
 interface Props {
   parentDocumentId?: Id<'documents'>;
   level?: number;
   data?: Doc<'documents'>;
 }
+
 const DocumentList: React.FC<Props> = ({ level = 0, ...props }) => {
   const params = useParams();
   const router = useRouter();
@@ -34,7 +34,7 @@ const DocumentList: React.FC<Props> = ({ level = 0, ...props }) => {
   };
 
   if (documents === undefined) {
-    return <Item.Skeleton level={level} />;
+    return <DocumentItem.Skeleton level={level} />;
   }
 
   return (
@@ -53,7 +53,7 @@ const DocumentList: React.FC<Props> = ({ level = 0, ...props }) => {
       </p>
       {documents?.map((document) => (
         <div key={document._id}>
-          <Item
+          <DocumentItem
             id={document._id}
             onClick={() => handleRouter(document._id)}
             label={document.title}

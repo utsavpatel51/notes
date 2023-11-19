@@ -1,5 +1,5 @@
 import { Doc } from '@/convex/_generated/dataModel';
-import EmojiPicker from '@/components/emoji-picker';
+import EmojiPicker from '@/components/modals/emoji-picker';
 import TextareaAutosize from 'react-textarea-autosize';
 import { Button } from '@/components/ui/button';
 import { ImageIcon, SmileIcon, XIcon } from 'lucide-react';
@@ -8,14 +8,14 @@ import { api } from '@/convex/_generated/api';
 import React from 'react';
 import useCoverImageStore from '@/store/useCoverImage';
 import { cn } from '@/lib/utils';
-import { useMediaQuery } from 'usehooks-ts';
+import { useMediaQuery } from '@/hooks/use-media-query';
 
 interface Props {
   initial: Doc<'documents'>;
   preview?: boolean;
 }
 
-const Toolbar = ({ initial, preview }: Props) => {
+const DocumentToolBar = ({ initial, preview }: Props) => {
   const { onOpen } = useCoverImageStore();
   const isMobile = useMediaQuery('(max-width: 768px)');
 
@@ -122,4 +122,4 @@ const Toolbar = ({ initial, preview }: Props) => {
   );
 };
 
-export default Toolbar;
+export default DocumentToolBar;

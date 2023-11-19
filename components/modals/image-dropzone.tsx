@@ -4,7 +4,7 @@ import { UploadCloudIcon, X } from 'lucide-react';
 import * as React from 'react';
 import { useDropzone, type DropzoneOptions } from 'react-dropzone';
 import { twMerge } from 'tailwind-merge';
-import Spinner from './spinner';
+import Spinner from '../spinner';
 
 const variants = {
   base: 'relative rounded-md flex justify-center items-center flex-col cursor-pointer min-h-[150px] min-w-[200px] border border-dashed border-gray-400 dark:border-gray-300 transition-colors duration-200 ease-in-out',
@@ -42,7 +42,7 @@ const ERROR_MESSAGES = {
   },
 };
 
-const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
+const ImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
   ({ dropzoneOptions, width, height, value, className, disabled, onChange }, ref) => {
     const imageUrl = React.useMemo(() => {
       if (typeof value === 'string') {
@@ -165,7 +165,7 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
     );
   },
 );
-SingleImageDropzone.displayName = 'SingleImageDropzone';
+ImageDropzone.displayName = 'SingleImageDropzone';
 
 const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
   ({ className, ...props }, ref) => {
@@ -203,4 +203,4 @@ function formatFileSize(bytes?: number) {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 }
 
-export { SingleImageDropzone };
+export { ImageDropzone as SingleImageDropzone };

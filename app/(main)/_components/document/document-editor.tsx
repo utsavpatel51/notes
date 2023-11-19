@@ -12,7 +12,7 @@ interface Props {
   editable?: boolean;
 }
 
-const Editor = ({ initialContent, onChange, editable }: Props) => {
+const DocumentEditor = ({ initialContent, onChange, editable }: Props) => {
   const { resolvedTheme } = useTheme();
   const { edgestore } = useEdgeStore();
 
@@ -40,4 +40,4 @@ const Editor = ({ initialContent, onChange, editable }: Props) => {
   );
 };
 
-export default Editor;
+export default DocumentEditor;

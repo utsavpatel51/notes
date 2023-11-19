@@ -4,8 +4,8 @@ import { useUser } from '@clerk/clerk-react';
 import { useConvexAuth } from 'convex/react';
 import { redirect } from 'next/navigation';
 import Spinner from '@/components/spinner';
-import Navigation from '@/app/(main)/_components/navigation';
-import SearchCommand from '@/components/search-command';
+import SideBar from '@/app/(main)/_components/sidebar';
+import SearchCommand from '@/components/modals/search-command';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -19,7 +19,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className='flex h-full dark:bg-[#1f1f1f]'>
-      <Navigation />
+      <SideBar />
       <main className='h-full flex-1 overflow-y-auto'>
         <SearchCommand />
         {children}

@@ -8,24 +8,24 @@ import {
   Trash,
 } from 'lucide-react';
 import React, { ElementRef } from 'react';
-import { useMediaQuery } from 'usehooks-ts';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import { cn } from '@/lib/utils';
 import { useParams, usePathname } from 'next/navigation';
-import UserItem from '@/app/(main)/_components/user-item';
+import UserAction from '@/app/(main)/_components/sidebar/user-action';
 import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import Item from '@/app/(main)/_components/item';
+import DocumentItem from '@/app/(main)/_components/sidebar/document-item';
 import { toast } from 'sonner';
 import { ConvexError } from 'convex/values';
-import DocumentList from '@/app/(main)/_components/document-list';
-import TrashBox from '@/app/(main)/_components/trash-box';
+import DocumentList from '@/app/(main)/_components/sidebar/document-list';
+import TrashBox from '@/app/(main)/_components/sidebar/trash-box';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import useSearchStore from '@/store/useSearch';
 import useSettingStore from '@/store/useSetting';
-import Navbar from '@/app/(main)/_components/navbar';
+import Header from '@/app/(main)/_components/header';
 import { useRouter } from 'next/navigation';
 
-const Navigation = () => {
+const SideBar = () => {
   const pathName = usePathname();
   const params = useParams();
   const router = useRouter();
@@ -141,17 +141,17 @@ const Navigation = () => {
           <ChevronsLeft className='h-6 w-6' onClick={collapse} />
         </div>
 
-        <UserItem />
-        <Item onClick={onSearchOpen} label='Search' icon={SearchIcon} isSearch />
-        <Item onClick={onSettingOpen} label='Settings' icon={SettingsIcon} />
-        <Item onClick={handleAddNote} label='New Note' icon={PlusCircle} />
+        <UserAction />
+        <DocumentItem onClick={onSearchOpen} label='Search' icon={SearchIcon} isSearch />
+        <DocumentItem onClick={onSettingOpen} label='Settings' icon={SettingsIcon} />
+        <DocumentItem onClick={handleAddNote} label='New Note' icon={PlusCircle} />
 
         <div className='mt-4 overflow-y-auto'>
           <DocumentList />
-          <Item onClick={handleAddNote} label='Add Note' icon={Plus} />
+          <DocumentItem onClick={handleAddNote} label='Add Note' icon={Plus} />
           <Popover>
             <PopoverTrigger className='mt-4 w-full'>
-              <Item label={'Trash'} icon={Trash} />
+              <DocumentItem label={'Trash'} icon={Trash} />
             </PopoverTrigger>
             <PopoverContent side={isMobile ? 'bottom' : 'right'} className='p-2'>
               <TrashBox />
@@ -173,7 +173,7 @@ const Navigation = () => {
         )}
       >
         {!!params.documentId ? (
-          <Navbar isCollapsed={isCollapsed} resetWidth={resetWidth} />
+          <Header isCollapsed={isCollapsed} resetWidth={resetWidth} />
         ) : (
           <nav className='w-full bg-transparent px-3 py-2'>
             {isCollapsed && (
@@ -190,4 +190,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default SideBar;

@@ -4,14 +4,14 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import Item from '@/app/(main)/_components/item';
+import DocumentItem from '@/app/(main)/_components/sidebar/document-item';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface Props {
   initial: Doc<'documents'>;
 }
 
-const Title = ({ initial }: Props) => {
+const DocumentTitle = ({ initial }: Props) => {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
   const updateDocument = useMutation(api.documents.updateDocument);
 
@@ -71,7 +71,7 @@ const Title = ({ initial }: Props) => {
   );
 };
 
-Title.Skeleton = function TitleSkeleton() {
+DocumentTitle.Skeleton = function TitleSkeleton() {
   return (
     <div className='px-3 py-2'>
       <Skeleton className='h-4 w-16 rounded-md px-3 py-2' />
@@ -79,4 +79,4 @@ Title.Skeleton = function TitleSkeleton() {
   );
 };
 
-export default Title;
+export default DocumentTitle;

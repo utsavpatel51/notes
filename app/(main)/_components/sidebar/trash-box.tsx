@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { ConvexError } from 'convex/values';
 import { Input } from '@/components/ui/input';
 import Spinner from '@/components/spinner';
-import ConfirmModal from '@/components/confirm-modal';
+import ConfirmModal from '@/components/modals/confirm-modal';
 
 const TrashBox = () => {
   const [searchQuery, setSearchQuery] = React.useState('');

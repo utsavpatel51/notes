@@ -1,6 +1,6 @@
 import useCoverImageStore from '@/store/useCoverImage';
-import { Dialog, DialogContent, DialogHeader } from './ui/dialog';
-import { SingleImageDropzone } from './single-image-dropzon';
+import { Dialog, DialogContent, DialogHeader } from '../ui/dialog';
+import { SingleImageDropzone } from './image-dropzone';
 import React from 'react';
 import { useEdgeStore } from '@/lib/edgestore';
 import { useMutation } from 'convex/react';
