@@ -10,13 +10,14 @@ import { api } from '@/convex/_generated/api';
 import { useParams } from 'next/navigation';
 import { Id } from '@/convex/_generated/dataModel';
 import { useEdgeStore } from '@/lib/edgestore';
-import { useMediaQuery } from 'usehooks-ts';
+import { useMediaQuery } from '@/hooks/use-media-query';
 
 interface Props {
   url?: string;
   preview?: boolean;
 }
-const CoverBar = ({ url, preview }: Props) => {
+
+const DocumentCoverBar = ({ url, preview }: Props) => {
   const params = useParams();
   const { onOpen } = useCoverImageStore();
   const updateDocument = useMutation(api.documents.updateDocument);
@@ -68,4 +69,4 @@ const CoverBar = ({ url, preview }: Props) => {
   );
 };
 
-export default CoverBar;
+export default DocumentCoverBar;

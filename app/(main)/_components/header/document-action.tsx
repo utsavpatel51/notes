@@ -18,7 +18,7 @@ import { useRouter } from 'next/navigation';
 interface Props {
   documentId: Id<'documents'>;
 }
-const PageMenu = ({ documentId }: Props) => {
+const DocumentAction = ({ documentId }: Props) => {
   const archiveDocument = useMutation(api.documents.archiveDocument);
   const { user } = useUser();
   const router = useRouter();
@@ -71,4 +71,4 @@ const PageMenu = ({ documentId }: Props) => {
     </DropdownMenu>
   );
 };
-export default PageMenu;
+export default DocumentAction;

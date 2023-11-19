@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/dialog';
 import useSettingStore from '@/store/useSetting';
 import { Label } from '@/components/ui/label';
-import ThemeToggle from '@/components/theme-toggle';
+import ThemeToggle from '@/components/modals/theme-toggle';
 
 const SettingModal = () => {
   const settingStore = useSettingStore();

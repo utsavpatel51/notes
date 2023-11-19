@@ -2,7 +2,7 @@
 import React from 'react';
 import { api } from '@/convex/_generated/api';
 import { Doc } from '@/convex/_generated/dataModel';
-import useOrigin from '@/hooks/useOrigin';
+import useOrigin from '@/hooks/use-origin';
 import { useMutation } from 'convex/react';
 import { toast } from 'sonner';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
@@ -13,7 +13,8 @@ import { Input } from '@/components/ui/input';
 interface Props {
   initial: Doc<'documents'>;
 }
-const Publish = ({ initial }: Props) => {
+
+const PublishSection = ({ initial }: Props) => {
   const origin = useOrigin();
   const updateDocument = useMutation(api.documents.updateDocument);
 
@@ -121,4 +122,4 @@ const Publish = ({ initial }: Props) => {
   );
 };
 
-export default Publish;
+export default PublishSection;

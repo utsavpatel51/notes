@@ -3,15 +3,16 @@ import React from 'react';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { Id } from '@/convex/_generated/dataModel';
-import Toolbar from '@/components/toolbar';
-import CoverBar from '@/components/cover-bar';
+import DocumentToolBar from '@/components/document-tool-bar';
+import DocumentCoverBar from '@/components/document-cover-bar';
 import { Skeleton } from '@/components/ui/skeleton';
 import dynamic from 'next/dynamic';
 
 const DocumentPreviewPage = ({ params }: { params: { documentId: Id<'documents'> } }) => {
   // https://www.blocknotejs.org/docs/nextjs#import-as-dynamic
-  const Editor = React.useMemo(
-    () => dynamic(() => import('@/app/(main)/_components/editor'), { ssr: false }),
+  const DocumentEditor = React.useMemo(
+    () =>
+      dynamic(() => import('@/app/(main)/_components/document/document-editor'), { ssr: false }),
     [],
   );
 
@@ -50,10 +51,14 @@ const DocumentPreviewPage = ({ params }: { params: { documentId: Id<'documents'>
 
   return (
     <div className='pb-40'>
-      <CoverBar url={document.coverImage} preview />
+      <DocumentCoverBar url={document.coverImage} preview />
       <div className='mx-auto md:max-w-3xl lg:max-w-4xl'>
-        <Toolbar initial={document} preview />
-        <Editor initialContent={document.content} onChange={handleContentChange} editable={false} />
+        <DocumentToolBar initial={document} preview />
+        <DocumentEditor
+          initialContent={document.content}
+          onChange={handleContentChange}
+          editable={false}
+        />
       </div>
     </div>
   );

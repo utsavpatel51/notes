@@ -6,12 +6,12 @@ import { toast } from 'sonner';
 import { ConvexError } from 'convex/values';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import ConfirmModal from '@/components/confirm-modal';
+import ConfirmModal from '@/components/modals/confirm-modal';
 
 interface Props {
   documentId: Id<'documents'>;
 }
-const Banner = ({ documentId }: Props) => {
+const TrashBanner = ({ documentId }: Props) => {
   const restoreDocuments = useMutation(api.documents.restoreArchiveDocuments);
   const deleteDocuments = useMutation(api.documents.deleteDocuments);
   const router = useRouter();
@@ -70,4 +70,4 @@ const Banner = ({ documentId }: Props) => {
     </div>
   );
 };
-export default Banner;
+export default TrashBanner;

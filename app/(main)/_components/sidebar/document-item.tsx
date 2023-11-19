@@ -31,7 +31,8 @@ interface Props {
   isSearch?: boolean;
   level?: number;
 }
-const Item = ({ icon: Icon, level = 0, ...props }: Props) => {
+
+const DocumentItem = ({ icon: Icon, level = 0, ...props }: Props) => {
   const router = useRouter();
   const archiveDocument = useMutation(api.documents.archiveDocument);
   const createDocument = useMutation(api.documents.create);
@@ -158,7 +159,7 @@ const Item = ({ icon: Icon, level = 0, ...props }: Props) => {
   );
 };
 
-Item.Skeleton = function ItemSkeleton({ level = 0 }: { level?: number }) {
+DocumentItem.Skeleton = function ItemSkeleton({ level = 0 }: { level?: number }) {
   return (
     <div style={{ paddingLeft: `${level * 12 + 12}px` }} className='flex gap-x-2 py-[3px]'>
       <Skeleton className='h-4 w-4' />
@@ -166,4 +167,4 @@ Item.Skeleton = function ItemSkeleton({ level = 0 }: { level?: number }) {
     </div>
   );
 };
-export default Item;
+export default DocumentItem;

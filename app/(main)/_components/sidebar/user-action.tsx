@@ -9,7 +9,7 @@ import { SignOutButton, useUser } from '@clerk/clerk-react';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { ChevronsLeftRight } from 'lucide-react';
 
-const UserItem = () => {
+const UserAction = () => {
   const { user } = useUser();
   return (
     <DropdownMenu>
@@ -49,4 +49,4 @@ const UserItem = () => {
     </DropdownMenu>
   );
 };
-export default UserItem;
+export default UserAction;
