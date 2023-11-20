@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Notes
 
-## Getting Started
+A connected workspace where better, faster work happens. From remote teams to hybrid workforces, Notes helps people communicate and collaborate more effectively.
 
-First, run the development server:
+### Features
+
+- Rich text editor
+- Publish page to web
+
+### Roadmap
+
+- [ ] Real-time collaboration in notes.
+- [ ] More blocks in a rich text editor (e.x code block, video block)
+- [ ] Integration of draw-pad in notes
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`CONVEX_DEPLOYMENT`
+`NEXT_PUBLIC_CONVEX_URL`
+`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+`CLERK_SECRET_KEY`
+`EDGE_STORE_ACCESS_KEY`
+`EDGE_STORE_SECRET_KEY`
+
+### Run Locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  https://github.com/utsavpatel51/notes
+  cd my-project
+  npm install
+  npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Client:** NextJS, TailwindCSS, Zustand
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**Server:** Convex
 
-## Learn More
+## Related
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The project is inspired by [Notion](https://notion.so). For initial development, I have followed [this](https://www.youtube.com/watch?v=0OaDyjB9Ib8) tutorial. For next steps, I'm planning to add more features and make it one for all solution for note-taking.
