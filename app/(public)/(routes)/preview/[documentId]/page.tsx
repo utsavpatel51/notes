@@ -1,4 +1,5 @@
 'use client';
+
 import React from 'react';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
@@ -18,7 +19,7 @@ const DocumentPreviewPage = ({ params }: { params: { documentId: Id<'documents'>
 
   const document = useQuery(api.documents.getDocumentById, {
     id: params.documentId,
-  });
+  })?.document;
 
   const updateDocument = useMutation(api.documents.updateDocument);
 
