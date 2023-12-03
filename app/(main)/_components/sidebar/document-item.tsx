@@ -15,7 +15,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
 import { useUser } from '@clerk/clerk-react';
 import { useRouter } from 'next/navigation';
 
@@ -97,7 +96,7 @@ const DocumentItem = ({ icon: Icon, level = 0, ...props }: Props) => {
         props.active && 'bg-primary/5 text-primary',
       )}
     >
-      {!!props.id && (
+      {!!props.id && !!props.onExpand && (
         <div
           className='mr-1 h-full rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600'
           role='button'

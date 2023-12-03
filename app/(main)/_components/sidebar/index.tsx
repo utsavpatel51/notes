@@ -24,6 +24,7 @@ import useSearchStore from '@/store/useSearch';
 import useSettingStore from '@/store/useSetting';
 import Header from '@/app/(main)/_components/header';
 import { useRouter } from 'next/navigation';
+import SharedDocumentList from './shared-document-list';
 
 const SideBar = () => {
   const pathName = usePathname();
@@ -147,6 +148,7 @@ const SideBar = () => {
         <DocumentItem onClick={handleAddNote} label='New Note' icon={PlusCircle} />
 
         <div className='mt-4 overflow-y-auto'>
+          <SharedDocumentList />
           <DocumentList />
           <DocumentItem onClick={handleAddNote} label='Add Note' icon={Plus} />
           <Popover>

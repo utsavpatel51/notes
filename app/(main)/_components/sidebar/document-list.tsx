@@ -40,6 +40,14 @@ const DocumentList: React.FC<Props> = ({ level = 0, ...props }) => {
   return (
     <>
       <p
+        className={cn(
+          'hidden pl-[15px] text-xs font-medium text-muted-foreground/80',
+          level === 0 && 'block',
+        )}
+      >
+        Private
+      </p>
+      <p
         style={{
           paddingLeft: `${level * 12 + 25}px`,
         }}
