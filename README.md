@@ -40,6 +40,8 @@ To run this project, you will need to add the following environment variables to
 
 **Server:** Convex
 
+**Auth:** Clerk
+
 ## Related
 
 The project is inspired by [Notion](https://notion.so). For initial development, I have followed [this](https://www.youtube.com/watch?v=0OaDyjB9Ib8) tutorial. For next steps, I'm planning to add more features and make it one for all solution for note-taking.
