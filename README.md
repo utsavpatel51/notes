@@ -9,7 +9,8 @@ A connected workspace where better, faster work happens. From remote teams to hy
 
 ### Roadmap
 
-- [ ] Real-time collaboration in notes.
+- [X] Real-time collaboration in notes.
+  - [ ] Send Email on share notes
 - [ ] More blocks in a rich text editor (e.x code block, video block)
 - [ ] Integration of draw-pad in notes
 
