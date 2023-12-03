@@ -69,6 +69,7 @@ export const getSearchDocuments = query({
 export const getDocumentById = query({
   args: {
     id: v.id('documents'),
+    shareDocument: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -76,14 +77,33 @@ export const getDocumentById = query({
     const existingDocument = await ctx.db.get(args.id);
     if (!existingDocument) throw new ConvexError('no document found');
 
-    if (existingDocument.isPublished && !existingDocument.isArchived) return existingDocument;
+    if (existingDocument.isPublished && !existingDocument.isArchived)
+      return { document: existingDocument };
 
     if (!identity) throw new ConvexError('Please Login to continue!');
     const userId = identity.subject;
+    const userEmail = identity.email || '';
 
+    if (args.shareDocument) {
+      const access = await ctx.db
+        .query('sharedDocuments')
+        .withIndex('by_user_document', (q) =>
+          q.eq('documentId', args.id).eq('userEmail', userEmail),
+        )
+        .first();
+
+      if (!access) throw new ConvexError('No document found for you');
+
+      const existingDocument = await ctx.db.get(args.id);
+
+      return {
+        document: existingDocument,
+        accessLevel: access?.accessLevel,
+      };
+    }
     if (existingDocument.userId !== userId) throw new ConvexError('Not allowed to view document');
 
-    return existingDocument;
+    return { document: existingDocument };
   },
 });
 
@@ -149,6 +169,17 @@ export const archiveDocument = mutation({
     });
 
     await recursiveArchive(args.id);
+
+    const sharedDocuments = await ctx.db
+      .query('sharedDocuments')
+      .withIndex('by_user_document', (q) => q.eq('documentId', args.id))
+      .collect();
+
+    if (sharedDocuments.length) {
+      for (const sharedDocument of sharedDocuments) {
+        await ctx.db.delete(sharedDocument._id);
+      }
+    }
 
     return document;
   },

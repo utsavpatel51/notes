@@ -8,7 +8,7 @@ import DocumentCoverBar from '@/components/document-cover-bar';
 import { Skeleton } from '@/components/ui/skeleton';
 import dynamic from 'next/dynamic';
 
-const DocumentPage = ({ params }: { params: { documentId: Id<'documents'> } }) => {
+const DocumentSharePage = ({ params }: { params: { documentId: Id<'documents'> } }) => {
   // https://www.blocknotejs.org/docs/nextjs#import-as-dynamic
   const DocumentEditor = React.useMemo(
     () =>
@@ -16,7 +16,7 @@ const DocumentPage = ({ params }: { params: { documentId: Id<'documents'> } }) =
     [],
   );
 
-  const document = useQuery(api.documents.getDocumentById, {
+  const sharedDocument = useQuery(api.sharedDocuments.getShareDocumentById, {
     id: params.documentId,
   });
 
@@ -29,7 +29,7 @@ const DocumentPage = ({ params }: { params: { documentId: Id<'documents'> } }) =
     });
   };
 
-  if (document === undefined) {
+  if (sharedDocument === undefined) {
     return (
       <div className='w-full pt-8'>
         <Skeleton className='h-[12vh] w-full' />
@@ -45,19 +45,26 @@ const DocumentPage = ({ params }: { params: { documentId: Id<'documents'> } }) =
     );
   }
 
-  if (document.document === null) {
+  if (sharedDocument === null || sharedDocument.document === null) {
     return null;
   }
 
   return (
     <div className='pb-40'>
-      <DocumentCoverBar url={document.document.coverImage} />
+      <DocumentCoverBar
+        url={sharedDocument.document?.coverImage}
+        preview={sharedDocument.accessLevel === 'read'}
+      />
       <div className='mx-auto md:max-w-3xl lg:max-w-4xl'>
-        <DocumentToolBar initial={document.document} />
-        <DocumentEditor initialContent={document.document.content} onChange={handleContentChange} />
+        <DocumentToolBar initial={sharedDocument.document} preview={!!sharedDocument.accessLevel} />
+        <DocumentEditor
+          initialContent={sharedDocument.document.content}
+          onChange={handleContentChange}
+          editable={sharedDocument.accessLevel === 'write'}
+        />
       </div>
     </div>
   );
 };
 
-export default DocumentPage;
+export default DocumentSharePage;

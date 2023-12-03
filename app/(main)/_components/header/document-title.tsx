@@ -9,9 +9,10 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 interface Props {
   initial: Doc<'documents'>;
+  preview?: boolean;
 }
 
-const DocumentTitle = ({ initial }: Props) => {
+const DocumentTitle = ({ initial, preview }: Props) => {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
   const updateDocument = useMutation(api.documents.updateDocument);
 
@@ -63,6 +64,7 @@ const DocumentTitle = ({ initial }: Props) => {
           size='sm'
           className='h-auto p-1 font-normal'
           onClick={handleAllowEdit}
+          disabled={preview}
         >
           {initial.title}
         </Button>
